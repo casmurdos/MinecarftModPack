@@ -1,0 +1,70 @@
+name: Compress and Release Mods
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  compress-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Install rar and 7zip
+      run: sudo apt-get install unrar p7zip-full
+
+    - name: Compress mods into zip
+      run: zip -r mods.zip mods
+
+    - name: Compress mods into rar
+      run: rar a mods.rar mods
+
+    - name: Compress mods into 7z
+      run: 7z a mods.7z mods
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        release_name: Release v1.0.${{ github.run_number }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset (ZIP)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./mods.zip
+        asset_name: mods.zip
+        asset_content_type: application/zip
+
+    - name: Upload Release Asset (RAR)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./mods.rar
+        asset_name: mods.rar
+        asset_content_type: application/x-rar-compressed
+
+    - name: Upload Release Asset (7Z)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./mods.7z
+        asset_name: mods.7z
+        asset_content_type: application/x-7z-compressed
