@@ -36,17 +36,17 @@ jobs:
 
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v2
+      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
-        tag_name: v2.0.${{ github.run_number }}
-        release_name: Release v2.0.${{ github.run_number }}
+        tag_name: v1.0.${{ github.run_number }}
+        release_name: Release v1.0.${{ github.run_number }}
         draft: false
         prerelease: false
 
     - name: Upload Release Asset (ZIP)
-      uses: actions/upload-release-asset@v2
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
@@ -56,7 +56,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload Release Asset (RAR)
-      uses: actions/upload-release-asset@v2
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
@@ -66,7 +66,7 @@ jobs:
         asset_content_type: application/x-rar-compressed
 
     - name: Upload Release Asset (7Z)
-      uses: actions/upload-release-asset@v2
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
