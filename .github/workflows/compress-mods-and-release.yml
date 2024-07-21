@@ -26,13 +26,13 @@ jobs:
         sudo cp rar/unrar /usr/local/bin/
 
     - name: Compress files into zip
-      run: zip -r minecraft.zip config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x .gitignore README.md .github/\* .git/\*
+      run: zip -r minecraft.zip config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x *.git* *.github* README.md
 
     - name: Compress files into rar
-      run: rar a minecraft.rar config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x .gitignore -x README.md -x .github/\* -x .git/\*
+      run: rar a minecraft.rar config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x *.git* *.github* README.md
 
     - name: Compress files into 7z
-      run: 7z a minecraft.7z config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -xr\!.gitignore -xr\!README.md -xr\!.github -xr\!.git
+      run: 7z a minecraft.7z config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x *.git* *.github* README.md
 
     - name: Create Release
       id: create_release
