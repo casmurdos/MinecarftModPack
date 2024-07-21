@@ -25,14 +25,14 @@ jobs:
         sudo cp rar/rar /usr/local/bin/
         sudo cp rar/unrar /usr/local/bin/
 
-    - name: Compress mods into zip
-      run: zip -r mods.zip mods
+    - name: Compress files into zip
+      run: zip -r minecraft.zip config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x .gitignore README.md .github/\* .git/\*
 
-    - name: Compress mods into rar
-      run: rar a mods.rar mods
+    - name: Compress files into rar
+      run: rar a minecraft.rar config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x .gitignore -x README.md -x .github/\* -x .git/\*
 
-    - name: Compress mods into 7z
-      run: 7z a mods.7z mods
+    - name: Compress files into 7z
+      run: 7z a minecraft.7z config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -xr\!.gitignore -xr\!README.md -xr\!.github -xr\!.git
 
     - name: Create Release
       id: create_release
@@ -51,8 +51,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./mods.zip
-        asset_name: mods.zip
+        asset_path: ./minecraft.zip
+        asset_name: minecraft.zip
         asset_content_type: application/zip
 
     - name: Upload Release Asset (RAR)
@@ -61,8 +61,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./mods.rar
-        asset_name: mods.rar
+        asset_path: ./minecraft.rar
+        asset_name: minecraft.rar
         asset_content_type: application/x-rar-compressed
 
     - name: Upload Release Asset (7Z)
@@ -71,6 +71,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./mods.7z
-        asset_name: mods.7z
+        asset_path: ./minecraft.7z
+        asset_name: minecraft.7z
         asset_content_type: application/x-7z-compressed

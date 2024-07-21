@@ -1,0 +1,109 @@
+mode = "fancy"
+
+[light_sources]
+	water_sensitive_check = false
+	block_entities = false
+	entities = true
+	self = true
+	tnt = "simple"
+	creeper = "simple"
+
+	[light_sources.settings]
+
+		[light_sources.settings.entities]
+
+			[light_sources.settings.entities.minecraft]
+				player = true
+				wolf = true
+				slime = true
+				cow = true
+				pig = true
+				sheep = true
+				chicken = true
+				zombie = true
+				skeleton = true
+				squid = true
+				glow_squid = true
+				bat = true
+				spider = true
+				creeper = true
+				pillager = true
+				vindicator = true
+				zombie_villager = true
+				item = true
+				enderman = true
+				cod = true
+				salmon = true
+				fox = true
+				horse = true
+				tnt_minecart = true
+				bee = true
+				armor_stand = true
+				arrow = true
+				experience_orb = true
+				potion = true
+				husk = true
+				item_frame = true
+				tropical_fish = true
+				painting = true
+				area_effect_cloud = true
+				witch = true
+				rabbit = true
+				drowned = true
+				villager = true
+				cat = true
+				goat = true
+				donkey = true
+				iron_golem = true
+				dolphin = true
+				firework_rocket = true
+				phantom = true
+				turtle = true
+				lightning_bolt = true
+				pufferfish = true
+
+			[light_sources.settings.entities.graveyard]
+				skeleton_creeper = true
+				ghoul = true
+				nightmare = true
+				revenant = true
+				corrupted_pillager = true
+
+			[light_sources.settings.entities.creeperoverhaul]
+				cave_creeper = true
+				spruce_creeper = true
+				snowy_creeper = true
+				dripstone_creeper = true
+				hills_creeper = true
+				beach_creeper = true
+				savannah_creeper = true
+				ocean_creeper = true
+
+			[light_sources.settings.entities.bewitchment]
+				ghost = true
+				owl = true
+				snake = true
+				raven = true
+
+			[light_sources.settings.entities.artifacts]
+				mimic = true
+
+			[light_sources.settings.entities.lootr]
+				lootr_minecart = true
+
+			[light_sources.settings.entities.minecells]
+				undead_archer = true
+				leaping_zombie = true
+				custom_arrow = true
+				shieldbearer = true
+				grenadier = true
+				protector = true
+				mutated_bat = true
+				runner = true
+
+			[light_sources.settings.entities.soulsweapons]
+				big_moonlight_projectile = true
+
+			[light_sources.settings.entities.spellbladenext]
+				cycloneentity = true
+
