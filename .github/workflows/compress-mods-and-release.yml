@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Reset Run Number
+      run: echo "::set-env name=RUN_NUMBER::0"
+
     - name: Checkout repository
       uses: actions/checkout@v3
 
@@ -32,7 +35,7 @@ jobs:
       run: rar a minecraft.rar config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x *.git* *.github* README.md
 
     - name: Compress files into 7z
-      run: 7z a minecraft.7z config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -x *.git* *.github* README.md
+      run: 7z a minecraft.7z config data mods resourcepacks shaderpacks options.txt servers.dat TrashSlotSaveState.json -xr\!*.git* -xr\!*.github* -xr\!README.md
 
     - name: Create Release
       id: create_release
@@ -74,3 +77,6 @@ jobs:
         asset_path: ./minecraft.7z
         asset_name: minecraft.7z
         asset_content_type: application/x-7z-compressed
+
+    - name: Remove compressed files
+      run: rm minecraft.zip minecraft.rar minecraft.7z
